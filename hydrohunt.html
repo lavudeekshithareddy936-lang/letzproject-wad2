@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HydroHero Hunt | Hydration Challenge</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="hydrohunt.css">
+<link rel="stylesheet" href="hydrohunt.js">
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav class="navbar">
+  <a href="#" class="logo">
+    <span class="logo-icon">💧</span>
+    <span>Hydro<span class="logo-light">Hero</span></span>
+  </a>
+
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#tracker">My Hydration</a>
+    <a href="#squad">My Squad</a>
+    <a href="#leaderboard">Leaderboard</a>
+  </div>
+
+  <div class="nav-right">
+    <button class="bell" id="reminderBtn">♧</button>
+    <div class="user-avatar">H</div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+
+<section class="hero" id="home">
+
+  <div class="hero-background"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="pulse"></span>
+      CAMPUS HYDRATION CHALLENGE
+    </div>
+
+    <h1>
+      Make Every Sip<br>
+      <span>Count.</span> Make Every<br>
+      Team <span>Win.</span>
+    </h1>
+
+    <p>
+      Turn your daily water habit into an exciting team challenge.
+      Stay hydrated, build your streak and become a HydroHero.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#tracker" class="primary-btn">Start Hydrating ↗</a>
+      <a href="#squad" class="secondary-btn">Explore Teams</a>
+    </div>
+
+    <div class="hero-trust">
+      <div class="mini-avatars">
+        <span>👩</span><span>👨</span><span>👩🏻</span><span>👨🏻</span>
+      </div>
+      <div>
+        <strong>Hydrate together!</strong>
+        <small>Every drop makes a difference.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="image-glow"></div>
+    <img
+      src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&auto=format&fit=crop&q=85"
+      alt="Reusable water bottle"
+      class="hero-bottle"
+    >
+
+    <div class="floating-card float-card-one">
+      <span>💧</span>
+      <div><strong>Daily hydration</strong><small>Stay consistent!</small></div>
+    </div>
+
+    <div class="floating-card float-card-two">
+      <span>🔥</span>
+      <div><strong>7 Day Streak</strong><small>You're on fire!</small></div>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <span>DRINK SMART</span>
+    <span>✦</span>
+    <span>COMPETE TOGETHER</span>
+    <span>✦</span>
+    <span>STAY HEALTHY</span>
+  </div>
+</section>
+
+<!-- STATISTICS -->
+
+<section class="stats-section">
+  <div class="stat">
+    <span>💧</span>
+    <div><h2 id="statWater">0 ml</h2><p>Water Consumed</p></div>
+  </div>
+
+  <div class="stat">
+    <span>🎯</span>
+    <div><h2 id="statGoal">2275 ml</h2><p>Daily Target</p></div>
+  </div>
+
+  <div class="stat">
+    <span>🔥</span>
+    <div><h2 id="statStreak">0 Days</h2><p>Current Streak</p></div>
+  </div>
+
+  <div class="stat">
+    <span>🏆</span>
+    <div><h2 id="statRank">#2</h2><p>Team Ranking</p></div>
+  </div>
+</section>
+
+<!-- WATER TRACKER -->
+
+<section class="section" id="tracker">
+
+  <div class="section-title">
+    <div>
+      <span class="overline">YOUR PERSONAL WELLNESS</span>
+      <h2>Today's Hydration</h2>
+      <p>Make every glass a step towards your goal.</p>
+    </div>
+    <span class="date-label" id="todayDate"></span>
+  </div>
+
+  <div class="tracker-grid">
+
+    <div class="glass-card bottle-card">
+
+      <div class="card-title">
+        <div><span class="tiny-label">DAILY PROGRESS</span><h3>Your Water Bottle</h3></div>
+        <span class="round-icon">💧</span>
+      </div>
+
+      <div class="bottle-stage">
+        <div class="bottle-illustration">
+          <div class="bottle-cap"></div>
+          <div class="bottle-body">
+            <div class="bottle-water" id="waterFill">
+              <div class="water-wave"></div>
+            </div>
+            <div class="bottle-percent">
+              <strong id="percent">0%</strong>
+              <small>COMPLETED</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottle-side-text">
+          <span>YOUR GOAL</span>
+          <h2 id="bottleGoal">2275</h2>
+          <small>ML / DAY</small>
+        </div>
+      </div>
+
+      <div class="intake-numbers">
+        <div><small>DRANK</small><strong id="drank">0 ml</strong></div>
+        <div><small>REMAINING</small><strong id="remaining">2275 ml</strong></div>
+      </div>
+
+      <div class="progress-bar"><div id="progress"></div></div>
+    </div>
+
+    <div class="glass-card logging-card">
+      <span class="overline">QUICK WATER LOGGING</span>
+      <h3>Time for a sip! 💦</h3>
+      <p>Choose your bottle size or enter a custom amount.</p>
+
+      <div class="water-buttons">
+        <button onclick="addWater(250)">
+          <span>🥛</span><strong>250 ml</strong><small>Small glass</small>
+        </button>
+
+        <button onclick="addWater(500)">
+          <span>🍶</span><strong>500 ml</strong><small>Water bottle</small>
+        </button>
+
+        <button onclick="addWater(750)">
+          <span>🧋</span><strong>750 ml</strong><small>Big tumbler</small>
+        </button>
+      </div>
+
+      <div class="custom-label">CUSTOM AMOUNT</div>
+      <div class="custom-row">
+        <input id="customWater" type="number" placeholder="Enter ml" min="1" max="5000">
+        <button onclick="customAdd()">ADD +</button>
+      </div>
+
+      <div class="success-message" id="lastSip">
+        ✨ Ready for your next sip!
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TEAM SECTION -->
+
+<section class="section team-section" id="squad">
+
+  <div class="section-title">
+    <div>
+      <span class="overline">TOGETHER WE ARE STRONGER</span>
+      <h2>Hydration Squads</h2>
+      <p>Build your squad and reach your collective goals.</p>
+    </div>
+    <button class="primary-btn small-btn" onclick="openModal('createModal')">+ Create Team</button>
+  </div>
+
+  <div class="team-grid">
+
+    <div class="team-feature">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&auto=format&fit=crop&q=80" alt="Friends working together">
+      <div class="team-overlay">
+        <span>YOUR CURRENT SQUAD</span>
+        <h2 id="teamName">Hydro Warriors</h2>
+        <p>💧 <span id="members">4</span> Team Members</p>
+        <div class="team-percentage"><strong id="teamScore">75%</strong><small>TEAM GOAL COMPLETED</small></div>
+      </div>
+    </div>
+
+    <div class="team-details">
+      <div class="card-title">
+        <div><span class="tiny-label">TEAM PERFORMANCE</span><h3>Member Progress</h3></div>
+        <span>👥</span>
+      </div>
+
+      <div id="memberList"></div>
+
+      <button class="join-btn" onclick="openModal('joinModal')">Join Another Team +</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+
+<section class="section leaderboard-section" id="leaderboard">
+
+  <div class="section-title">
+    <div>
+      <span class="overline">CAMPUS CHAMPIONS</span>
+      <h2>HydroHero Leaderboard 🏆</h2>
+      <p>Which squad will rule the hydration challenge?</p>
+    </div>
+    <span class="live-pill">● LIVE DEMO</span>
+  </div>
+
+  <div class="leaderboard-card">
+
+    <div class="winner-podium">
+      <div class="winner second-place">
+        <span>🥈</span>
+        <div class="winner-circle">HA</div>
+        <strong>Hydro Achievers</strong>
+        <small>74% COMPLETE</small>
+        <div class="podium second-height">02</div>
+      </div>
+
+      <div class="winner first-place">
+        <span>👑</span>
+        <div class="winner-circle">HA</div>
+        <strong>Hostel Block A</strong>
+        <small>86% COMPLETE</small>
+        <div class="podium first-height">01</div>
+      </div>
+
+      <div class="winner third-place">
+        <span>🥉</span>
+        <div class="winner-circle">SK</div>
+        <strong>Sip Kings</strong>
+        <small>69% COMPLETE</small>
+        <div class="podium third-height">03</div>
+      </div>
+    </div>
+
+    <div class="rank-list" id="rankList"></div>
+  </div>
+</section>
+
+<!-- ANALYTICS -->
+
+<section class="section analytics-section" id="analytics">
+
+  <div class="section-title">
+    <div>
+      <span class="overline">TRACK YOUR PROGRESS</span>
+      <h2>Hydration Analytics 📊</h2>
+      <p>Understand your daily drinking habits.</p>
+    </div>
+    <span class="analytics-icon">📈</span>
+  </div>
+
+  <div class="glass-card chart-card">
+    <div class="chart-heading">
+      <div><h3>Weekly Water Consumption</h3><p>Last seven days · Millilitres</p></div>
+      <span>THIS WEEK</span>
+    </div>
+    <div class="chart-area"><canvas id="waterChart"></canvas></div>
+  </div>
+</section>
+
+<!-- PLANT SECTION -->
+
+<section class="section plant-section">
+
+  <div class="plant-card">
+    <div class="plant-info">
+      <span class="overline">YOUR GREEN COMPANION</span>
+      <h2>Grow your own<br><span>Hydration Garden.</span></h2>
+      <p>Every sip helps your virtual plant grow. Complete your water goal and watch your little companion flourish!</p>
+      <h3 id="plantStatus">Your seed is waiting! 🌱</h3>
+    </div>
+
+    <div class="plant-picture">
+      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&auto=format&fit=crop&q=85" alt="Green plant growing in sunlight">
+      <div class="plant-emoji" id="plantEmoji">🌱</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTRA TOOLS -->
+
+<section class="section tools-section">
+
+  <div class="section-title">
+    <div><span class="overline">SMART HYDRATION</span><h2>Your Wellness Toolkit</h2></div>
+  </div>
+
+  <div class="tools-grid">
+
+    <div class="glass-card tool-card">
+      <span>🎯</span>
+      <h3>Daily Goal Calculator</h3>
+      <p>Estimate your personal daily water target.</p>
+      <label>Body weight (kg)</label>
+      <input id="weight" type="number" value="65" min="1" max="300">
+      <button onclick="calculateGoal()">Calculate My Goal</button>
+      <div class="tool-result" id="goalResult">Target: 2275 ml/day</div>
+    </div>
+
+    <div class="glass-card tool-card">
+      <span>☕</span>
+      <h3>Caffeine Offset</h3>
+      <p>Add an extra 200 ml target for each logged coffee or energy drink.</p>
+      <button onclick="addCoffee()">+ Log Caffeine Drink</button>
+      <div class="tool-result" id="coffeeResult">No caffeine drinks logged.</div>
+    </div>
+
+    <div class="glass-card tool-card">
+      <span>🔔</span>
+      <h3>Hydration Reminder</h3>
+      <p>Receive friendly browser notifications to remind you to drink water.</p>
+      <button onclick="enableReminder()">Enable Reminders</button>
+      <div class="tool-result" id="reminderStatus">Reminders are currently off.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+  <div class="logo"><span class="logo-icon">💧</span> HydroHero Hunt</div>
+  <p>Hydrate together. Compete together. Grow together.</p>
+  <small>© 2026 HydroHero Hunt Hackathon Project</small>
+</footer>
+
+<!-- CREATE TEAM MODAL -->
+
+<div class="modal" id="createModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('createModal')">×</button>
+    <h2>Create Your Squad 🚀</h2>
+    <p>Build your hydration team!</p>
+    <input id="newTeam" placeholder="Enter team name">
+    <input id="newCode" placeholder="Create invite code">
+    <button onclick="createTeam()">Create Squad</button>
+  </div>
+</div>
+
+<!-- JOIN TEAM MODAL -->
+
+<div class="modal" id="joinModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('joinModal')">×</button>
+    <h2>Join Your Squad 💧</h2>
+    <p>Enter your team's invitation code.</p>
+    <input id="inviteCode" placeholder="Enter invite code">
+    <button onclick="joinTeam()">Join Team</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
